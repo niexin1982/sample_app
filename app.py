@@ -1,6 +1,5 @@
 from flask import Flask
 from flask import render_template
-import socket
 import random
 import os
 import argparse
