@@ -1,10 +1,44 @@
 #!/usr/bin/env python
-from flask import Flask
-from flask import render_template
+# -*- coding: utf-8 -*-
+
 import random
 import os
 import argparse
+from flask import Flask
+from flask import render_template
+from logging.config import dictConfig
 
+dictConfig({
+    'version': 1,
+    'formatters': {'default': {
+        'format': '[%(asctime)s] %(levelname)s in %(module)s: %(message)s',
+    }},
+    'handlers': {'wsgi': {
+        'class': 'logging.StreamHandler',
+        'stream': 'ext://sys.stdout',
+        'formatter': 'default'
+    }},
+    'root': {
+        'level': 'INFO',
+        'handlers': ['wsgi']
+    }
+})
+
+dictConfig({
+    'version': 1,
+    'formatters': {'default': {
+        'format': '[%(asctime)s] %(levelname)s in %(module)s: %(message)s',
+    }},
+    'handlers': {'wsgi': {
+        'class': 'logging.StreamHandler',
+        'stream': 'ext://sys.stdout',
+        'formatter': 'default'
+    }},
+    'root': {
+        'level': 'INFO',
+        'handlers': ['wsgi']
+    }
+})
 app = Flask(__name__)
 
 color_codes = {
@@ -24,10 +58,15 @@ COLOR_FROM_ENV = os.environ.get('APP_COLOR')
 COLOR = random.choice(["red", "green", "blue", "blue2", "darkblue", "pink"])
 
 
-@app.route("/")
+@app.route('/')
 def main():
-    # return 'Hello'
     return render_template('hello.html', color=color_codes[COLOR])
+
+
+@app.route('/error')
+def error():
+    app.logger.error("It's intentional error.")
+    return render_template('error.html')
 
 
 if __name__ == "__main__":
