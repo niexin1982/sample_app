@@ -16,3 +16,22 @@ https://github.com/kodekloudhub/webapp-color
 docker build -t color:latest .
 docker run -e APP_COLOR=blue -p 8080:8080  color
 ```
+
+## ECRリポジトリへイメージをプッシュ
+
+### ECRリポジトリの用意
+
+以下命名規則でECRのリポジトリを用意しておく
+
+```
+${AWSアカウントID}.dkr.ecr.ap-northeast-1.amazonaws.com/${任意のプロジェクト名}-app:v1
+```
+
+### イメージビルド・プッシュ
+
+以下のようにコマンドを実行。
+
+```bash
+./push_image.sh ${プロジェクト名}
+```
+
