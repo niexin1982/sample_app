@@ -1,6 +1,6 @@
 {
-  "executionRoleArn": "arn:aws:iam::<AWS_ACCOUNT_ID>:role/color-app-ecs-task-execution",
-  "taskRoleArn": "arn:aws:iam::<AWS_ACCOUNT_ID>:role/color-app-ecs-task",
+  "executionRoleArn": "arn:aws:iam::291867443967:role/color-app-ecs-task-execution",
+  "taskRoleArn": "arn:aws:iam::291867443967:role/color-app-ecs-task",
   "containerDefinitions": [
     {
       "logConfiguration": {
